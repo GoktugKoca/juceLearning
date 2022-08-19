@@ -8,6 +8,8 @@
       <FILE id="h4Kovh" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
       <FILE id="tWbLs6" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/MainComponent.cpp"/>
+      <FILE id="U3NIp0" name="Sliders.cpp" compile="1" resource="0" file="Source/Sliders.cpp"/>
+      <FILE id="kKmluT" name="Sliders.h" compile="0" resource="0" file="Source/Sliders.h"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1"/>

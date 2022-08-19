@@ -59,18 +59,17 @@ public:
     {
     public:
         MainWindow (juce::String name)
-            : DocumentWindow (name,
-                              juce::Desktop::getInstance().getDefaultLookAndFeel()
-                                                          .findColour (juce::ResizableWindow::backgroundColourId),
-                              DocumentWindow::allButtons)
+            : DocumentWindow ("deneme",
+                              juce::Colours::red,
+                              DocumentWindow::closeButton)
         {
-            setUsingNativeTitleBar (true);
+            setUsingNativeTitleBar (false);
             setContentOwned (new MainComponent(), true);
 
            #if JUCE_IOS || JUCE_ANDROID
             setFullScreen (true);
            #else
-            setResizable (true, true);
+            setResizable (false, false);
             centreWithSize (getWidth(), getHeight());
            #endif
 
