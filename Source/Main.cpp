@@ -59,11 +59,11 @@ public:
     {
     public:
         MainWindow (juce::String name)
-            : DocumentWindow ("UI Denemeleri",
+            : DocumentWindow ("ALH Reverb",
                               juce::Colours::black,
                               DocumentWindow::closeButton)
         {
-            setUsingNativeTitleBar (false);
+            setUsingNativeTitleBar (true);
             setContentOwned (new MainComponent(), true);
 
            #if JUCE_IOS || JUCE_ANDROID
