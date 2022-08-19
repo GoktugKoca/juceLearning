@@ -59,8 +59,8 @@ public:
     {
     public:
         MainWindow (juce::String name)
-            : DocumentWindow ("deneme",
-                              juce::Colours::red,
+            : DocumentWindow ("UI Denemeleri",
+                              juce::Colours::black,
                               DocumentWindow::closeButton)
         {
             setUsingNativeTitleBar (false);
