@@ -10,24 +10,24 @@
 class MainComponent : public juce::Component
 {
 public:
-	//==============================================================================
-	MainComponent();
-	~MainComponent() override;
-
-	//==============================================================================
-	void paint(juce::Graphics&) override;
-	void resized() override;
-
+    //==============================================================================
+    MainComponent();
+    ~MainComponent() override;
+    
+    //==============================================================================
+    void paint(juce::Graphics&) override;
+    void resized() override;
+    
 private:
-	//==============================================================================
-	// Your private member variables go here...
-
-	Sliders sliders;
-	juce::Image background;
+    //==============================================================================
+    // Your private member variables go here...
+    
+    Sliders sliders;
+    juce::Image background;
     juce::Image tby;
     
     
-
-
-	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainComponent)
+    
+    
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainComponent)
 };
