@@ -6,6 +6,7 @@
     <GROUP id="{4A8F8253-53A2-0078-1DDB-B5ACEDE7A1A1}" name="Source">
       <GROUP id="{88C6B405-0086-A3E0-C907-D30361123D1D}" name="Assets">
         <FILE id="eFvOM5" name="background.png" compile="0" resource="1" file="Source/Assets/background.png"/>
+        <FILE id="Q0WLqz" name="tby.png" compile="0" resource="1" file="Source/Assets/tby.png"/>
       </GROUP>
       <FILE id="o0a84d" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="h4Kovh" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>

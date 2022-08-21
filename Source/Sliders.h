@@ -15,6 +15,18 @@
 //==============================================================================
 /*
 */
+
+class rotaryLookAndFeel : public juce::LookAndFeel_V4
+{
+public:
+    rotaryLookAndFeel ()
+    {
+        setColour(juce::Slider::rotarySliderFillColourId, juce::Colours::white);
+        
+    }
+};
+
+
 class Sliders : public juce::Component
 {
 public:
@@ -23,15 +35,20 @@ public:
 
 	void paint(juce::Graphics&) override;
 	void resized() override;
+    
+    juce::Slider rotary1;
+    juce::Slider rotary2;
+    juce::Slider rotary3;
+    juce::Slider rotary4;
+    juce::Slider rotary5;
+    juce::Slider rotary6;
+    
+    rotaryLookAndFeel rotaryLookAndFeel;
+    
+    juce::Label rotary1Label;
+    
 
 private:
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Sliders)
 
-	juce::Slider rotary1;
-	juce::Slider rotary2;
-	juce::Slider rotary3;
-	juce::Slider rotary4;
-	juce::Slider rotary5;
-	juce::Slider rotary6;
-
-};
+	};
