@@ -17,6 +17,8 @@ MainComponent::~MainComponent()
 }
 
 //==============================================================================
+
+
 void MainComponent::paint(juce::Graphics& g)
 {
     

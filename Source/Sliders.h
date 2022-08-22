@@ -54,6 +54,8 @@ public:
     juce::Font textFont   { 17.0f };
     juce::ComboBox styleMenu;
     
+    juce::Font labelFont {13.0f};
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Sliders)
     

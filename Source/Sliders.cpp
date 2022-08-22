@@ -14,9 +14,29 @@
 #include "Sliders.h"
 
 //==============================================================================
+
+// from https://forum.juce.com/t/best-way-of-rotating-components/17750/4 :
+//static void setVerticalRotatedWithBounds (juce::Component& component, bool clockWiseRotation, juce::Rectangle<int> verticalBounds)
+//{
+//    auto angle = juce::MathConstants<float>::pi / 2.0f;
+//
+//    if (! clockWiseRotation)
+//        angle *= -1.0f;
+//
+//    component.setTransform ({});
+//    component.setSize (verticalBounds.getHeight(), verticalBounds.getWidth());
+//    component.setCentrePosition (0, 0);
+//    component.setTransform (juce::AffineTransform::rotation (angle).translated (verticalBounds.getCentreX(), verticalBounds.getCentreY()));
+//}
+
 Sliders::Sliders()
 {
-    
+    getLookAndFeel().setColour(juce::Slider::rotarySliderFillColourId, juce::Colour(0xff4AABE1)); // Blue Jeans
+    getLookAndFeel().setColour(juce::Slider::thumbColourId, juce::Colour(0xffAE9D7A)); // Grullo
+    getLookAndFeel().setColour(juce::Slider::rotarySliderOutlineColourId, juce::Colour(0xffb76a5e)); // Copper
+    getLookAndFeel().setColour(juce::Slider::textBoxOutlineColourId, juce::Colour(23.f, 115.f, 57.f, 0.f)); // bunu transparent yapmaya calısıyorum ama olmuyor
+    getLookAndFeel().setColour(juce::Slider::textBoxTextColourId, juce::Colour(0xffAE9D7A));
+    getLookAndFeel().setColour(juce::ComboBox::backgroundColourId, juce::Colours::transparentWhite);
     
     rotary1.setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag); // vertical? horizontal? ya da her ikisi birden mi?
     rotary2.setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag); // e.g., ableton vertical kullanıyor
@@ -34,14 +54,17 @@ Sliders::Sliders()
     rotary1.setRange(0.0, 200.0, 1);
     rotary1.setValue(100);
     rotary1.setTextValueSuffix(" %");
-    //    rotary1Label.setText("Decay", juce::dontSendNotification);
-    //    rotary1Label.attachToComponent(&rotary1, false);
-    //    rotary1Label.setJustificationType (juce::Justification::centred);
-    //    rotary1Label.setColour(juce::Label::textColourId, juce::Colour(0xffAE9D7A));
+    //    rotary1.setPopupDisplayEnabled(true, true, &rotary1Label);
+    rotary1.setPopupMenuEnabled(true);
+    rotary1Label.setText("Decay", juce::dontSendNotification);
+    rotary1Label.setFont(labelFont);
+    rotary1Label.setJustificationType (juce::Justification::centred);
+    rotary1Label.setColour(juce::Label::textColourId, juce::Colour(0xffAE9D7A));
     
     rotary2.setRange(0.0, 200.0, 1);
     rotary2.setValue(100);
     rotary2.setTextValueSuffix(" %");
+    rotary2.setPopupMenuEnabled(true);
     //    rotary2Label.setText("Size", juce::dontSendNotification);
     //    rotary2Label.attachToComponent(&rotary2, false);
     //    rotary2Label.setJustificationType(juce::Justification::centred);
@@ -64,13 +87,6 @@ Sliders::Sliders()
     rotary6.setTextValueSuffix(" %");
     
     
-    getLookAndFeel().setColour(juce::Slider::rotarySliderFillColourId, juce::Colour(0xff4AABE1)); // Blue Jeans
-    getLookAndFeel().setColour(juce::Slider::thumbColourId, juce::Colour(0xffAE9D7A)); // Grullo
-    getLookAndFeel().setColour(juce::Slider::rotarySliderOutlineColourId, juce::Colour(0xffb76a5e)); // Copper
-    getLookAndFeel().setColour(juce::Slider::textBoxOutlineColourId, juce::Colour(23.f, 115.f, 57.f, 0.f)); // bunu transparent yapmaya calısıyorum ama olmuyor
-    getLookAndFeel().setColour(juce::ComboBox::backgroundColourId, juce::Colours::transparentWhite);
-    
-    
     addAndMakeVisible(rotary1);
     addAndMakeVisible(rotary2);
     addAndMakeVisible(rotary3);
@@ -88,7 +104,7 @@ Sliders::Sliders()
     
     menuLabel.attachToComponent(&styleMenu, true);
     
-    //    addAndMakeVisible(rotary1Label);
+   addAndMakeVisible(rotary1Label);
     //    addAndMakeVisible(rotary2Label);
 }
 
@@ -121,9 +137,9 @@ void Sliders::resized()
     juce::Rectangle<int> SlidersArea2 = getLocalBounds().reduced(sliderBorder);
     juce::Rectangle<int> leftSlidersArea = SlidersArea.removeFromLeft(SlidersArea.getWidth()/3-120);
     juce::Rectangle<int> rightSlidersArea = SlidersArea2.removeFromRight(SlidersArea2.getWidth()/3-120);
-    // juce::Rectangle<int> middleArea = getLocalBounds().reduced(rotary1.getX()+rotary1.getWidth(), sliderBorder);
+    // juce::Rectangle<int> middleArea = getLocalBounds().reduced(rotary1.getX() + rotary1.getWidth(), sliderBorder);
     
-    // rotary1Label.setBounds(rotary1.getX(), rotary1.getY() + 20, rotary1.getWidth(), 10);
+    
     // rotary2Label.setBounds(rotary2.getX(), rotary2.getY() + 20	, rotary2.getWidth(), 10);
     
     rotary1.setBounds(leftSlidersArea.removeFromTop(leftSlidersArea.getHeight()/3));
@@ -133,5 +149,7 @@ void Sliders::resized()
     rotary5.setBounds(rightSlidersArea.removeFromTop(rightSlidersArea.getHeight()/2));
     rotary6.setBounds(rightSlidersArea);
     
-    styleMenu.setBounds(150,240,320,20);
+    rotary1Label.setBounds(rotary1.getX(), rotary1.getY() - 10, rotary1.getWidth(), 10);
+    
+    styleMenu.setBounds(150,240,320,22);
 }
