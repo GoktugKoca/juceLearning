@@ -15,16 +15,26 @@
 //==============================================================================
 /*
  */
-
-class rotaryLookAndFeel : public juce::LookAndFeel_V4
-{
-public:
-    rotaryLookAndFeel ()
-    {
-        setColour(juce::Slider::rotarySliderFillColourId, juce::Colours::white);
-        
-    }
-};
+class MyLookAndFeel : public juce::LookAndFeel_V4
+   {
+   public:
+       juce::Slider::SliderLayout getSliderLayout (juce::Slider&) override
+       {
+           juce::Slider::SliderLayout layout;
+           
+           
+           layout.sliderBounds = juce::Rectangle<int> (0, 0, 70,70 );
+           layout.textBoxBounds = juce::Rectangle<int> (layout.sliderBounds.getX(), layout.sliderBounds.getY() + layout.sliderBounds.getHeight() - 13, layout.sliderBounds.getWidth(), 20);
+           setColour(juce::Slider::rotarySliderFillColourId, juce::Colour(0xff4AABE1)); // Blue Jeans
+           setColour(juce::Slider::thumbColourId, juce::Colour(0xffAE9D7A)); // Grullo
+           setColour(juce::Slider::rotarySliderOutlineColourId, juce::Colour(0xffb76a5e)); // Copper
+           setColour(juce::Slider::textBoxOutlineColourId, juce::Colour(23.f, 115.f, 57.f, 0.f)); // bunu transparent yapmaya calısıyorum ama olmuyor
+           setColour(juce::Slider::textBoxTextColourId, juce::Colour(0xffAE9D7A));
+           setColour(juce::ComboBox::backgroundColourId, juce::Colours::transparentWhite);
+           
+           return layout;
+       }
+   };
 
 
 class Sliders : public juce::Component
@@ -43,7 +53,6 @@ public:
     juce::Slider rotary5;
     juce::Slider rotary6;
     
-    rotaryLookAndFeel rotaryLookAndFeel;
     
     juce::Label rotary1Label;
     juce::Label rotary2Label;
@@ -55,8 +64,10 @@ public:
     juce::ComboBox styleMenu;
     
     juce::Font labelFont {13.0f};
+
     
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Sliders)
     
+    MyLookAndFeel lfM;
 };

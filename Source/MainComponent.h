@@ -6,7 +6,6 @@
 
 
 
-
 class MainComponent : public juce::Component
 {
 public:
@@ -26,7 +25,7 @@ private:
     juce::Image background;
     juce::Image tby;
     
-    
+
     
     
     

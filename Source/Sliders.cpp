@@ -29,14 +29,17 @@
 //    component.setTransform (juce::AffineTransform::rotation (angle).translated (verticalBounds.getCentreX(), verticalBounds.getCentreY()));
 //}
 
+
+
 Sliders::Sliders()
 {
-    getLookAndFeel().setColour(juce::Slider::rotarySliderFillColourId, juce::Colour(0xff4AABE1)); // Blue Jeans
-    getLookAndFeel().setColour(juce::Slider::thumbColourId, juce::Colour(0xffAE9D7A)); // Grullo
-    getLookAndFeel().setColour(juce::Slider::rotarySliderOutlineColourId, juce::Colour(0xffb76a5e)); // Copper
-    getLookAndFeel().setColour(juce::Slider::textBoxOutlineColourId, juce::Colour(23.f, 115.f, 57.f, 0.f)); // bunu transparent yapmaya calısıyorum ama olmuyor
-    getLookAndFeel().setColour(juce::Slider::textBoxTextColourId, juce::Colour(0xffAE9D7A));
+//    getLookAndFeel().setColour(juce::Slider::rotarySliderFillColourId, juce::Colour(0xff4AABE1)); // Blue Jeans
+//    getLookAndFeel().setColour(juce::Slider::thumbColourId, juce::Colour(0xffAE9D7A)); // Grullo
+//    getLookAndFeel().setColour(juce::Slider::rotarySliderOutlineColourId, juce::Colour(0xffb76a5e)); // Copper
+//    getLookAndFeel().setColour(juce::Slider::textBoxOutlineColourId, juce::Colour(23.f, 115.f, 57.f, 0.f)); // bunu transparent yapmaya calısıyorum ama olmuyor
+//    getLookAndFeel().setColour(juce::Slider::textBoxTextColourId, juce::Colour(0xffAE9D7A));
     getLookAndFeel().setColour(juce::ComboBox::backgroundColourId, juce::Colours::transparentWhite);
+    
     
     rotary1.setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag); // vertical? horizontal? ya da her ikisi birden mi?
     rotary2.setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag); // e.g., ableton vertical kullanıyor
@@ -44,12 +47,12 @@ Sliders::Sliders()
     rotary4.setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag);
     rotary5.setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag);
     rotary6.setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag);
-    rotary1.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 20);
-    rotary2.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 20);
-    rotary3.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 20);
-    rotary4.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 20);
-    rotary5.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 20);
-    rotary6.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 20);
+    rotary1.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 10);
+    rotary2.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 10);
+    rotary3.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 10);
+    rotary4.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 10);
+    rotary5.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 10);
+    rotary6.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 10);
     
     rotary1.setRange(0.0, 200.0, 1);
     rotary1.setValue(100);
@@ -60,15 +63,22 @@ Sliders::Sliders()
     rotary1Label.setFont(labelFont);
     rotary1Label.setJustificationType (juce::Justification::centred);
     rotary1Label.setColour(juce::Label::textColourId, juce::Colour(0xffAE9D7A));
+   
+    rotary1.setLookAndFeel(&lfM);
+    rotary2.setLookAndFeel(&lfM);
+    rotary3.setLookAndFeel(&lfM);
+    rotary4.setLookAndFeel(&lfM);
+    rotary5.setLookAndFeel(&lfM);
+    rotary6.setLookAndFeel(&lfM);
     
     rotary2.setRange(0.0, 200.0, 1);
     rotary2.setValue(100);
     rotary2.setTextValueSuffix(" %");
     rotary2.setPopupMenuEnabled(true);
-    //    rotary2Label.setText("Size", juce::dontSendNotification);
-    //    rotary2Label.attachToComponent(&rotary2, false);
-    //    rotary2Label.setJustificationType(juce::Justification::centred);
-    //    rotary2Label.setColour(juce::Label::textColourId, juce::Colour(0xffAE9D7A));
+        rotary2Label.setText("Size", juce::dontSendNotification);
+        rotary2Label.setFont(labelFont);
+        rotary2Label.setJustificationType(juce::Justification::centred);
+        rotary2Label.setColour(juce::Label::textColourId, juce::Colour(0xffAE9D7A));
     
     rotary3.setRange(0.00f, 1000.f, 0.01f);
     rotary3.setValue(0.00f);
@@ -105,7 +115,7 @@ Sliders::Sliders()
     menuLabel.attachToComponent(&styleMenu, true);
     
    addAndMakeVisible(rotary1Label);
-    //    addAndMakeVisible(rotary2Label);
+    addAndMakeVisible(rotary2Label);
 }
 
 Sliders::~Sliders()
@@ -150,6 +160,7 @@ void Sliders::resized()
     rotary6.setBounds(rightSlidersArea);
     
     rotary1Label.setBounds(rotary1.getX(), rotary1.getY() - 10, rotary1.getWidth(), 10);
+    rotary2Label.setBounds(rotary2.getX(), rotary2.getY() - 10, rotary2.getWidth(), 10);
     
     styleMenu.setBounds(150,240,320,22);
 }
